@@ -29,8 +29,13 @@ function formatDate(dateStr: string) {
 }
 
 export async function generateStaticParams() {
-  const res = (await getAnnouncements()) as { data: Announcement[] };
-  return (res?.data ?? []).map((a) => ({ slug: a.slug }));
+  try {
+    const res = await getAnnouncements();
+    const announcements = (res as { data: { slug: string }[] }).data ?? [];
+    return announcements.map((a) => ({ slug: a.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export async function generateMetadata({
