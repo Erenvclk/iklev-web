@@ -1,40 +1,48 @@
 import type { Core } from '@strapi/strapi';
 
-const PUBLIC_PERMISSIONS = {
-  'api::announcement.announcement': ['find', 'findOne'],
-  'api::board-member.board-member': ['find'],
-  'api::static-page.static-page': ['find', 'findOne'],
-  'api::site-setting.site-setting': ['find'],
-  'api::hero-slide.hero-slide': ['find'],
-};
-
 export default {
   register(/* { strapi }: { strapi: Core.Strapi } */) {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
-    const publicRole = await strapi
-      .query('plugin::users-permissions.role')
-      .findOne({ where: { type: 'public' } });
+    try {
+      const publicRole = await strapi
+        .query('plugin::users-permissions.role')
+        .findOne({ where: { type: 'public' }, populate: ['permissions'] });
 
-    if (!publicRole) return;
+      if (!publicRole) {
+        strapi.log.warn('Public role not found');
+        return;
+      }
 
-    for (const [uid, actions] of Object.entries(PUBLIC_PERMISSIONS)) {
-      for (const action of actions) {
-        const existingPermission = await strapi
-          .query('plugin::users-permissions.permission')
-          .findOne({ where: { role: publicRole.id, action: `${uid}.${action}` } });
+      const permissionsToEnable = [
+        'api::announcement.announcement.find',
+        'api::announcement.announcement.findOne',
+        'api::board-member.board-member.find',
+        'api::static-page.static-page.find',
+        'api::static-page.static-page.findOne',
+        'api::site-setting.site-setting.find',
+        'api::hero-slide.hero-slide.find',
+      ];
 
-        if (!existingPermission) {
+      const existingActions = (publicRole.permissions || []).map(
+        (p: { action: string }) => p.action
+      );
+
+      for (const action of permissionsToEnable) {
+        if (!existingActions.includes(action)) {
           await strapi.query('plugin::users-permissions.permission').create({
             data: {
+              action,
               role: publicRole.id,
-              action: `${uid}.${action}`,
             },
           });
+          strapi.log.info(`Permission added: ${action}`);
         }
       }
-    }
 
-    strapi.log.info('Public permissions set successfully.');
+      strapi.log.info('Bootstrap: public permissions OK');
+    } catch (err) {
+      strapi.log.error('Bootstrap permission error:', err);
+    }
   },
 };
