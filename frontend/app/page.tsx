@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Users, GraduationCap, Calendar, CreditCard } from 'lucide-react';
+import { ArrowRight, GraduationCap, CreditCard } from 'lucide-react';
 import { getAnnouncements, getSiteSettings, getHeroSlides } from '@/lib/strapi';
 import HeroSlider from '@/components/sections/HeroSlider';
 import Image from 'next/image';
@@ -46,11 +46,11 @@ export default async function Home() {
   ]);
 
   const announcements: Announcement[] =
-    (announcementsRes as { data: Announcement[] }).data?.slice(0, 3) ?? [];
+    (announcementsRes as { data: Announcement[] } | null)?.data?.slice(0, 3) ?? [];
   const settings: SiteSettings =
-    (settingsRes as { data: SiteSettings }).data ?? {};
+    (settingsRes as { data: SiteSettings } | null)?.data ?? {} as SiteSettings;
   const slides: HeroSlide[] =
-    (slidesRes as { data: HeroSlide[] }).data ?? [];
+    (slidesRes as { data: HeroSlide[] } | null)?.data ?? [];
 
   return (
     <div className="min-h-screen">
@@ -59,7 +59,6 @@ export default async function Home() {
       <section className="relative">
         <HeroSlider slides={slides} />
 
-        {/* Slider üzerine overlay metin */}
         <div className="absolute inset-0 flex items-end z-10 pointer-events-none">
           <div className="max-w-6xl mx-auto px-6 pb-12 w-full">
             <div className="inline-flex items-center gap-2 bg-green-700/90 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4 pointer-events-auto">
