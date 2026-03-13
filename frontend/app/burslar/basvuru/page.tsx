@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: 'Bursiyer Başvuru — İKLEV',
   description: 'İKLEV burs başvurusu hakkında bilgi.',
 };
+export const dynamic = 'force-dynamic';
+
 
 export default function BursBasvuruPage() {
   return (

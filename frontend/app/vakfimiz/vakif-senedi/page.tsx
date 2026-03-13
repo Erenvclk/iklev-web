@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: 'İzmir Karşıyaka Lisesi Eğitim Vakfı senedi.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function VakifSenediPage() {
   return (
     <StaticPageTemplate

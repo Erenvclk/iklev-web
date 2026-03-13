@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: 'İzmir Karşıyaka Lisesi Eğitim Vakfı tarihçesi.',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function TarihcesiPage() {
   return (
     <StaticPageTemplate

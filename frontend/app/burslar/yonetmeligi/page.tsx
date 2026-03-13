@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: 'Burs Yönetmeliği — İKLEV',
   description: 'İKLEV burs yönetmeliği.',
 };
+export const dynamic = 'force-dynamic';
 
 export default function BursYonetmeligiPage() {
   return (
