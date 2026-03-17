@@ -45,4 +45,4 @@ export default {
       strapi.log.error('Bootstrap permission error:', err);
     }
   },
-};
+}; 
