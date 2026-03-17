@@ -1,8 +1,4 @@
-import type { Core } from '@strapi/strapi';
-
-const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({});
-
-module.exports = ({ env }) => ({
+export default ({ env }) => ({
   upload: {
     config: {
       provider: 'cloudinary',
@@ -19,5 +15,3 @@ module.exports = ({ env }) => ({
     },
   },
 });
-
-export default config;
