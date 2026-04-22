@@ -39,3 +39,10 @@ export async function getSiteSettings() {
 export async function getHeroSlides() {
   return fetchStrapi('/hero-slides?sort=order:asc&populate=image');
 }
+
+// Yardımcı fonksiyon — strapi.ts veya utils.ts'e ekle
+export function getStrapiMedia(url: string | null | undefined): string {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  return `${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`;
+}

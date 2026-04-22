@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Metadata } from 'next';
+import { getStrapiMedia } from '@/lib/strapi';
+
 
 interface Announcement {
   id: number;
@@ -19,6 +21,7 @@ interface Announcement {
     alternativeText?: string;
   };
 }
+
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('tr-TR', {
@@ -69,7 +72,7 @@ export default async function HaberDetayPage({
       {announcement.coverImage && (
         <div className="w-full aspect-21/6 relative overflow-hidden bg-stone-200">
           <Image
-            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${announcement.coverImage.url}`}
+            src={getStrapiMedia(announcement.coverImage.url)}
             alt={announcement.coverImage.alternativeText ?? announcement.title}
             fill
             className="object-cover"

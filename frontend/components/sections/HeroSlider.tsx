@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { getStrapiMedia } from '@/lib/strapi';
 
 interface HeroSlide {
   id: number;
@@ -59,7 +60,7 @@ export default function HeroSlider({ slides }: Props) {
           }`}
         >
           <Image
-            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${slide.image.url}`}
+            src={getStrapiMedia(slide.image.url)}
             alt={slide.alt ?? slide.image.alternativeText ?? 'İKLEV'}
             fill
             className="object-cover"

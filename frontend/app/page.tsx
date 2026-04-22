@@ -3,7 +3,7 @@ import { ArrowRight, GraduationCap, CreditCard } from 'lucide-react';
 import { getAnnouncements, getSiteSettings, getHeroSlides } from '@/lib/strapi';
 import HeroSlider from '@/components/sections/HeroSlider';
 import Image from 'next/image';
-
+import { getStrapiMedia } from '@/lib/strapi';
 interface Announcement {
   id: number;
   documentId: string;
@@ -172,7 +172,7 @@ export default async function Home() {
                   <div className="aspect-video bg-stone-100 overflow-hidden relative">
                     {announcement.coverImage ? (
                       <Image
-                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${announcement.coverImage.url}`}
+                        src={getStrapiMedia(announcement.coverImage.url)}
                         alt={announcement.coverImage.alternativeText ?? announcement.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"

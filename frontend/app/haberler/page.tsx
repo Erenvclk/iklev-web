@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { GraduationCap, ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
+import { getStrapiMedia } from '@/lib/strapi';
 
 export const metadata: Metadata = {
   title: 'Haberler — İKLEV',
@@ -67,7 +68,7 @@ export default async function HaberlerPage() {
                 <div className="aspect-video bg-stone-100 overflow-hidden relative">
                   {announcement.coverImage ? (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${announcement.coverImage.url}`}
+                      src={getStrapiMedia(announcement.coverImage.url)}
                       alt={announcement.coverImage.alternativeText ?? announcement.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
