@@ -55,17 +55,19 @@ export default function HeroSlider({ slides }: Props) {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            i === current ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <Image
-            src={getStrapiMedia(slide.image.url)}
-            alt={slide.alt ?? slide.image.alternativeText ?? 'İKLEV'}
-            fill
-            className="object-cover"
-            priority={i === 0}
-          />
+          {slide.image?.url && (
+            <Image
+              src={getStrapiMedia(slide.image.url)}
+              alt={slide.alt ?? slide.image.alternativeText ?? 'İKLEV'}
+              fill
+              className="object-cover"
+              priority={i === 0}
+            />
+          )}
+        
           <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
         </div>
       ))}
@@ -97,11 +99,10 @@ export default function HeroSlider({ slides }: Props) {
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`transition-all rounded-full ${
-                i === current
+              className={`transition-all rounded-full ${i === current
                   ? 'w-6 h-2 bg-white'
                   : 'w-2 h-2 bg-white/50 hover:bg-white/75'
-              }`}
+                }`}
               aria-label={`Slayt ${i + 1}`}
             />
           ))}
