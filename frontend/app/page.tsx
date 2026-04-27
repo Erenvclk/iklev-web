@@ -4,6 +4,7 @@ import { getAnnouncements, getSiteSettings, getHeroSlides } from '@/lib/strapi';
 import HeroSlider from '@/components/sections/HeroSlider';
 import Image from 'next/image';
 import { getStrapiMedia } from '@/lib/strapi';
+
 interface Announcement {
   id: number;
   documentId: string;
@@ -52,6 +53,8 @@ export default async function Home() {
   const slides: HeroSlide[] =
     (slidesRes as { data: HeroSlide[] } | null)?.data ?? [];
 
+  const memberCount = settings.memberCount ?? 200;
+
   return (
     <div className="min-h-screen">
 
@@ -90,23 +93,49 @@ export default async function Home() {
       {/* ── HAKKIMIZDA ── */}
       <section className="bg-white border-b border-stone-100">
         <div className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+          {/* Üst başlık */}
+          <div className="mb-12">
+            <span className="text-xs font-semibold text-green-700 uppercase tracking-widest mb-3 block">
+              Vakfımız Hakkında
+            </span>
+            <h2 className="text-3xl font-bold text-stone-900 leading-tight">
+              İzmir Karşıyaka Lisesi Eğitim Vakfı
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+
+            {/* Sol: Açıklama metni */}
             <div>
-              <span className="text-xs font-semibold text-green-700 uppercase tracking-widest mb-3 block">
-                Vakfımız Hakkında
-              </span>
-              <h2 className="text-3xl font-bold text-stone-900 mb-5 leading-tight">
-                İzmir&apos;de Üç Lise Eğitim Vakfından Biri
-              </h2>
-              <p className="text-stone-500 leading-relaxed mb-4">
+              <p className="text-stone-600 leading-relaxed mb-4">
                 Vakfımız, İzmir&apos;de bulunan üç lise eğitim vakfından biri olarak
                 25 Nisan 1996 tarihinden bu yana çalışmalarını sürdürmektedir.
+                Bugün itibarıyla {memberCount}&apos;in üzerinde üyeye sahiptir.
               </p>
-              <p className="text-stone-500 leading-relaxed mb-6">
-                Yetenekli ve çalışkan olduğu halde okuma olanakları sınırlı olan
-                öğrencilerimize burs vererek, onların eğitim hayallerini
-                gerçekleştirmelerine destek oluyoruz.
+
+              {/* Vakıf senedi alıntısı */}
+              <blockquote className="border-l-2 border-green-600 pl-5 my-6">
+                <p className="text-stone-600 leading-relaxed italic text-sm">
+                  &ldquo;İzmir Karşıyaka Lisesi öğrencilerini; özgür düşünce, çağdaş bilim
+                  anlayışı ve Atatürk ilkeleri ışığı altında yetiştirme, çalışma, inceleme,
+                  araştırma ve yönetim yeteneklerine sahip kılmak. Ülkeye ve insanlığa
+                  yararlı aydın kişiler olarak yetişmelerini sağlamaya çalışmak. Lise bina
+                  ve eğitim olanaklarının genişletilmesi, onarılması ve artırılmasına
+                  katkıda bulunmak… Eğitsel ve kültürel hizmetlere katkı sağlamak.&rdquo;
+                </p>
+                <footer className="mt-3 text-xs text-stone-400 font-medium uppercase tracking-wide not-italic">
+                  Vakıf Senedi
+                </footer>
+              </blockquote>
+
+              <p className="text-stone-600 leading-relaxed mb-6">
+                Amaçlarını gerçekleştirmek için yıllardır çalışmalarını sürdüren vakfımız,
+                yetenekli ve çalışkan olduğu halde okuma olanakları sınırlı öğrencilerimize
+                her yıl onlarca burs vermektedir. Gelirleri üye giriş katılım payları ve
+                bağışlardan oluşmaktadır.
               </p>
+
               <Link
                 href="/vakfimiz/tarihcesi"
                 className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-medium text-sm transition-colors"
@@ -115,22 +144,38 @@ export default async function Home() {
               </Link>
             </div>
 
+            {/* Sağ: Amaçlar kartı */}
             <div className="bg-stone-50 rounded-2xl p-8 border border-stone-100">
-              <h3 className="text-sm font-semibold text-stone-400 uppercase tracking-widest mb-6">
+              <h3 className="text-xs font-semibold text-stone-400 uppercase tracking-widest mb-6">
                 Vakfın Amaçları
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-5">
                 {[
-                  'Özgür düşünce ve çağdaş bilim anlayışıyla öğrenci yetiştirmek',
-                  'Burs vererek eğitime erişimi desteklemek',
-                  'Lise bina ve eğitim olanaklarına katkıda bulunmak',
-                  'Eğitsel ve kültürel hizmetlere destek sağlamak',
+                  {
+                    title: 'Özgür Düşünce ve Çağdaş Eğitim',
+                    desc: 'Atatürk ilkeleri ışığında, özgür düşünce ve çağdaş bilim anlayışıyla öğrenci yetiştirmek.',
+                  },
+                  {
+                    title: 'Burs ile Eğitime Erişim',
+                    desc: 'Okuma olanakları sınırlı, yetenekli ve çalışkan öğrencilere burs sağlamak.',
+                  },
+                  {
+                    title: 'Okul Olanaklarını Geliştirmek',
+                    desc: 'Lise bina ve eğitim olanaklarının genişletilmesi, onarılması ve artırılmasına katkıda bulunmak.',
+                  },
+                  {
+                    title: 'Kültürel ve Eğitsel Hizmetler',
+                    desc: 'Yarışmalar, törenler ve vefa günleriyle eğitsel ve kültürel hizmetlere destek sağlamak.',
+                  },
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  <li key={i} className="flex items-start gap-4">
+                    <span className="w-6 h-6 rounded-full bg-green-100 text-green-700 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                       {i + 1}
                     </span>
-                    <span className="text-sm text-stone-600 leading-relaxed">{item}</span>
+                    <div>
+                      <p className="text-sm font-semibold text-stone-700 mb-0.5">{item.title}</p>
+                      <p className="text-sm text-stone-500 leading-relaxed">{item.desc}</p>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -217,7 +262,7 @@ export default async function Home() {
             <h2 className="text-3xl font-bold text-stone-900 mb-4">
               Vakfa Bağış Yapın
             </h2>
-            <p className="text-stone-500 leading-relaxed mb-8">
+            <p className="text-stone-600 leading-relaxed mb-8">
               Bağışlarınız, öğrencilerimizin eğitim hayallerini gerçekleştirmesine
               doğrudan katkı sağlar.
             </p>
