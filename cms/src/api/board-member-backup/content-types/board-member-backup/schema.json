@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "board_member_backups",
+  "info": {
+    "singularName": "board-member-backup",
+    "pluralName": "board-member-backups",
+    "displayName": "boardMemberBackup"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

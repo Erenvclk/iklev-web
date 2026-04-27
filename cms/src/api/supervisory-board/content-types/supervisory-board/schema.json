@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supervisory_boards",
+  "info": {
+    "singularName": "supervisory-board",
+    "pluralName": "supervisory-boards",
+    "displayName": "supervisoryBoard"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer"
+    }
+  }
+}

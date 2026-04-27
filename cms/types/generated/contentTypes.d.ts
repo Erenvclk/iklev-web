@@ -604,6 +604,37 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBoardMemberBackupBoardMemberBackup
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'board_member_backups';
+  info: {
+    displayName: 'boardMemberBackup';
+    pluralName: 'board-member-backups';
+    singularName: 'board-member-backup';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::board-member-backup.board-member-backup'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBoardMemberBoardMember extends Struct.CollectionTypeSchema {
   collectionName: 'board_members';
   info: {
@@ -775,6 +806,7 @@ export interface ApiStaticPageStaticPage extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -783,6 +815,37 @@ export interface ApiStaticPageStaticPage extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupervisoryBoardSupervisoryBoard
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'supervisory_boards';
+  info: {
+    displayName: 'supervisoryBoard';
+    pluralName: 'supervisory-boards';
+    singularName: 'supervisory-board';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supervisory-board.supervisory-board'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    order: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1306,12 +1369,14 @@ declare module '@strapi/strapi' {
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
+      'api::board-member-backup.board-member-backup': ApiBoardMemberBackupBoardMemberBackup;
       'api::board-member.board-member': ApiBoardMemberBoardMember;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
       'api::hero-slide.hero-slide': ApiHeroSlideHeroSlide;
       'api::site-setting.site-setting': ApiSiteSettingSiteSetting;
       'api::static-page.static-page': ApiStaticPageStaticPage;
+      'api::supervisory-board.supervisory-board': ApiSupervisoryBoardSupervisoryBoard;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
