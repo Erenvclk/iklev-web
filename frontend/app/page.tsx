@@ -129,11 +129,18 @@ export default async function Home() {
                 </footer>
               </blockquote>
 
-              <p className="text-stone-600 leading-relaxed mb-6">
+              <p className="text-stone-600 leading-relaxed mb-4">
                 Amaçlarını gerçekleştirmek için yıllardır çalışmalarını sürdüren vakfımız,
                 yetenekli ve çalışkan olduğu halde okuma olanakları sınırlı öğrencilerimize
-                her yıl onlarca burs vermektedir. Gelirleri üye giriş katılım payları ve
-                bağışlardan oluşmaktadır.
+                her yıl onlarca burs vermektedir. Bunun yanı sıra eski mezunlarımız onuruna
+                50. ve 60. yıl tören ve galaları, aramızdan ayrılan ve yaşayan en eski
+                öğretmen ve mezunlarımızın anıldığı vefa günleri düzenlemekte; okulumuzun
+                ihtiyaçlarını karşılamak için de kesintisiz çalışmaktadır.
+              </p>
+
+              <p className="text-stone-600 leading-relaxed mb-6">
+                Karşıyaka Liseliler olarak biz varsak ve birlikte olursak vakfımız sonsuza
+                kadar yaşayacaktır. Üye olun, bağışlarınızla katkıda bulunun.
               </p>
 
               <Link
