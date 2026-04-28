@@ -64,8 +64,7 @@ export default async function IletisimPage() {
                     {settings.phone ?? '(0232) 368 1912'}
                   </a>
                   <p className="text-xs text-stone-400 mt-1">0532 379 1912 — Vakıf Merkezi</p>
-                  <p className="text-xs text-stone-400">0535 302 00 57 — Başkan Prof. Dr. Semih Güneş</p>
-                  <p className="text-xs text-stone-400">0532 453 11 88 — Bşk. Yrd. Av. Vehbi Moğol</p>
+                
                 </div>
               </div>
 
