@@ -28,6 +28,14 @@ export async function getBoardMembers() {
   return fetchStrapi('/board-members?sort=order:asc');
 }
 
+export async function getBackupBoardMembers() {
+  return fetchStrapi('/board-member-backups?sort=order:asc');
+}
+
+export async function getSupervisoryBoardMembers() {
+  return fetchStrapi('/supervisory-boards?sort=order:asc');
+}
+
 export async function getStaticPage(slug: string) {
   return fetchStrapi(`/static-pages?filters[slug][$eq]=${slug}`);
 }
