@@ -45,7 +45,11 @@ function MemberTable({ members }: { members: BoardMember[] }) {
   }
 
   return (
-    <table className="w-full">
+    <table className="w-full table-fixed">
+      <colgroup>
+        <col className="w-1/2" />
+        <col className="w-1/2" />
+      </colgroup>
       <thead>
         <tr className="bg-stone-50 border-b border-stone-200">
           <th className="text-left px-6 py-4 text-xs font-semibold text-stone-400 uppercase tracking-widest">
@@ -86,7 +90,6 @@ function MemberTable({ members }: { members: BoardMember[] }) {
     </table>
   );
 }
-
 export default async function YonetimKurullariPage() {
   const [mainRes, backupRes, supervisoryRes] = await Promise.all(
     BOARD_SECTIONS.map((s) => s.fetcher())
