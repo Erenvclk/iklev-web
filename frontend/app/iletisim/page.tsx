@@ -117,7 +117,7 @@ export default async function IletisimPage() {
         {/* Harita */}
         <div className="mt-6 bg-white rounded-xl border border-stone-200 overflow-hidden">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.8!2d27.1!3d38.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zS2Fyw59peWFrYQ!5e0!3m2!1str!2str!4v1"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d500!2d27.118984899999997!3d38.4632386!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbdad9c598e0c1%3A0x81090a0dcd7d05ea!2zWWHFn2FyIEFrc295IFNrLiBObzo4MywgMzU2MDAgS2Fyw59peWFrYS_EsHptaXIsIFTDvHJraXll!5e0!3m2!1str!2str!4v1"
             width="100%"
             height="300"
             style={{ border: 0 }}

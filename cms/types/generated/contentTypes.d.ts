@@ -775,6 +775,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
+    extraPhones: Schema.Attribute.Component<'shared.extra-phone', true>;
     foundedYear: Schema.Attribute.String;
     ibanNo: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;

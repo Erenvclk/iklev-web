@@ -25,6 +25,11 @@
     },
     "foundedYear": {
       "type": "string"
+    },
+    "extraPhones": {
+      "type": "component",
+      "component": "shared.extra-phone",
+      "repeatable": true
     }
   }
 }
